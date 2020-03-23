@@ -26,7 +26,7 @@ def setup(root_dir):
     for note in NOTES:
         path = '{}/application/modules/musicbox/sounds/piano-{}.wav'.format(
             root_dir, note)
-        print('{}@{}'.format(note, path))
+        # print('{}@{}'.format(note, path))
         sound = pygame.mixer.Sound(path)
         sounds[note] = sound
 

@@ -23,10 +23,10 @@ install:
 install_dev:
 	pipenv install --dev
 
-run:
+run: clean
 	@pipenv run python ./application/main.py
 
-test:
-	pytest tests
+test: clean
+	pytest
 
 .PHONY: init install install_dev test
