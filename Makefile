@@ -29,4 +29,7 @@ run: clean
 test: clean
 	pytest
 
+test-cov: clean
+	pytest --cov=application
+
 .PHONY: init install install_dev test
