@@ -3,7 +3,7 @@ demo_button_press = false
 demo_play_octave = false
 mocked_gpio = false
 
-[staging]
+[development]
 demo_button_press = true
 demo_play_octave = true
 mocked_gpio = true

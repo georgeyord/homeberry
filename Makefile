@@ -1,3 +1,4 @@
+ENV_FOR_DYNACONF ?= development
 
 clean: clean-build clean-pyc clean-test
 
@@ -24,7 +25,7 @@ install:
 	@poetry install
 
 run: clean
-	@poetry run python ./application/main.py
+	@ENV_FOR_DYNACONF=$(ENV_FOR_DYNACONF) poetry run python ./application/main.py
 
 test: clean
 	@poetry run pytest
