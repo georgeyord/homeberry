@@ -1,5 +1,3 @@
-
-
 import os
 import pygame
 
@@ -21,10 +19,10 @@ pygame.init()
 sounds = {}
 
 
-def setup(root_dir):
+def setup_notes(root_dir):
     # Iterating using for loop
     for note in NOTES:
-        path = '{}/application/modules/musicbox/sounds/piano-{}.wav'.format(
+        path = '{}/application/modules/soundplayer/sounds/piano-{}.wav'.format(
             root_dir, note)
         # print('{}@{}'.format(note, path))
         sound = pygame.mixer.Sound(path)

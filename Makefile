@@ -10,6 +10,7 @@ clean-pyc:
 	@find . -name '*.pyo' -exec rm -f {} +
 	@find . -name '*~' -exec rm -f {} +
 	@find . -name '__pycache__' -exec rm -fr {} +
+	@find . -name '*.egg-info' -exec rm -f {} +
 
 clean-test:
 	@rm -f .coverage
@@ -27,9 +28,9 @@ run: clean
 	@pipenv run python ./application/main.py
 
 test: clean
-	pytest
+	pipenv run pytest
 
 test-cov: clean
-	pytest --cov=application
+	pipenv run pytest --cov=application
 
 .PHONY: init install install_dev test
