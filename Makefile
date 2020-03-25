@@ -18,10 +18,15 @@ clean-test:
 	@rm -fr htmlcov/
 	@rm -fr .pytest_cache/
 
+check_system_deps:
+	@hash python 2> /dev/null || echo >&2 'Python is required'
+	@hash poetry 2> /dev/null || echo >&2 'Poetry is required'
+	@hash pyenv 2> /dev/null || echo >&2 'Pyenv is highly recommended'
+
 init: install
 	poetry env info
 
-install:
+install: check_system_deps
 	@poetry install
 
 run: clean
