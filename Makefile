@@ -10,27 +10,23 @@ clean-pyc:
 	@find . -name '*.pyo' -exec rm -f {} +
 	@find . -name '*~' -exec rm -f {} +
 	@find . -name '__pycache__' -exec rm -fr {} +
-	@find . -name '*.egg-info' -exec rm -f {} +
+	@find . -name '*.egg-info' -exec rm -rf {} +
 
 clean-test:
 	@rm -f .coverage
 	@rm -fr htmlcov/
+	@rm -fr .pytest_cache/
 
-init: install_dev install
+init: install
+	poetry env info
 
 install:
-	pipenv install
-
-install_dev:
-	pipenv install --dev
+	@poetry install
 
 run: clean
-	@pipenv run python ./application/main.py
+	@poetry run python ./application/main.py
 
 test: clean
-	pipenv run pytest
+	@poetry run pytest
 
-test-cov: clean
-	pipenv run pytest --cov=application
-
-.PHONY: init install install_dev test
+.PHONY: init install run test

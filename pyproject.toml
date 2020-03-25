@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "application"
+version = "0.1.1"
+description = ""
+authors = ["George Yord <george.yord@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+gpiozero = "^1.5.1"
+pygame = "^1.9.6"
+requests = "^2.23.0"
+twython = "^3.7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+autopep8 = "^1.5"
+pytest-cov = "^2.8.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
