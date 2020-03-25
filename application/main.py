@@ -1,11 +1,9 @@
-from time import sleep
 
-from gpiozero import Device
 
 import application.modules.soundplayer as player
+from application.modules.demo import play_demo
 from application.constants import ROOT_DIR
 from application.modules.gpio import buttons, init_gpio_buttons
-from application.modules.gpio.constants import GPIO_PIN_17
 from application.modules.musicbox import setup_button_actions
 
 
@@ -14,19 +12,8 @@ def _main():
     player.setup_notes(ROOT_DIR)
     setup_button_actions(buttons, player.sounds)
 
-    # Get a reference to mock pin 16 (used by the button)
-    sleep(1)
-    print('Emulate key down to button pinned at {}'.format(
-        buttons[player.DO].pin))
-    btn_pin = Device.pin_factory.pin(GPIO_PIN_17)
-    btn_pin.drive_low()
-
-    sleep(2)
-    print('Check sounds pinned at {}'.format(buttons[player.DO].pin))
-    SLEEP = 0.5
-    for note in player.sounds.keys():
-        player.play_note(note)
-        sleep(SLEEP)
+    # Play demo if enabled by configuration
+    play_demo()
 
 
 if __name__ == '__main__':

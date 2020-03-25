@@ -1,6 +1,6 @@
 import os
 
-from application.modules.soundplayer.player import setup_notes, sounds
+from application.modules.soundplayer import setup_notes, sounds
 
 
 def test_setup_notes():

@@ -1,4 +1,5 @@
 
+from dynaconf import settings
 from gpiozero import Button, Device
 from gpiozero.pins.mock import MockFactory
 
@@ -7,7 +8,10 @@ from application.modules.gpio.constants import GPIO_PIN_17
 
 # Globals
 buttons = {}
-Device.pin_factory = MockFactory()
+
+if settings.MOCKED_GPIO:
+    print('Use MockFactory as GPIO Pin factory')
+    Device.pin_factory = MockFactory()
 
 
 def init_gpio_buttons():
