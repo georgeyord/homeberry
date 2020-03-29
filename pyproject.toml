@@ -11,6 +11,7 @@ pygame = "^1.9.6"
 requests = "^2.23.0"
 twython = "^3.7.0"
 dynaconf = "^2.2.3"
+slackclient = "^2.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"

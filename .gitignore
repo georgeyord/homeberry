@@ -133,3 +133,6 @@ dmypy.json
 
 # Yord
 .TODO
+
+# Application specific
+config/settings.local.toml

@@ -1,9 +1,14 @@
 [default]
 demo_button_press = false
 demo_play_octave = false
+demo_slack_message = false
 mocked_gpio = false
+# Set your personal API token from Slack
+# slack_api_token = "XXX"
+slack_home_channel = "home"
 
 [development]
 demo_button_press = true
 demo_play_octave = true
+demo_slack_message = true
 mocked_gpio = true
