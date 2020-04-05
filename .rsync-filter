@@ -1,5 +1,6 @@
 + application
 + config
++ Makefile
 + poetry.lock
 + pyproject.toml
 + .python-version

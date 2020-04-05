@@ -1,4 +1,4 @@
-ENV_FOR_DYNACONF ?= development
+APP_ENV ?= development
 
 clean: clean-build clean-pyc clean-test
 
@@ -24,15 +24,17 @@ check_system_deps:
 	@hash pyenv 2> /dev/null || echo >&2 'Pyenv is highly recommended'
 
 init: install
+	git submodule init
+	git submodule update
 	poetry env info
 
 install: check_system_deps
 	@poetry install
 
-run: clean
-	@ENV_FOR_DYNACONF=$(ENV_FOR_DYNACONF) poetry run python ./application/main.py
+run: clean check_system_deps
+	@ENV_FOR_DYNACONF=$(APP_ENV) poetry run python ./application/main.py
 
-test: clean
+test: clean check_system_deps
 	@poetry run pytest
 
 .PHONY: init install run test
