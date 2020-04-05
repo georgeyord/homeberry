@@ -29,6 +29,7 @@ init: install
 	poetry env info
 
 install: check_system_deps
+	pip install -U pylint --user
 	@poetry install
 
 run: clean check_system_deps
@@ -37,4 +38,4 @@ run: clean check_system_deps
 test: clean check_system_deps
 	@poetry run pytest
 
-.PHONY: init install run test
+.PHONY: clean clean-build clean-pyc clean-test init install run test
