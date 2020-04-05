@@ -35,6 +35,9 @@ install: check_system_deps
 run: clean check_system_deps
 	@ENV_FOR_DYNACONF=$(APP_ENV) poetry run python ./application/main.py
 
+run-slackit: clean check_system_deps
+	poetry run python ./application/slackit.py
+
 test: clean check_system_deps
 	@poetry run pytest
 

@@ -31,6 +31,7 @@ pi_one ansible_host=[YOUR_LAN_IP or raspberrypi.local] ansible_user=pi
 ```
 - Run:
 ```
+cd ansible
 ansible-playbook raspberrypi.yaml
 ansible-playbook byobu.yaml
 ansible-playbook homeberry-prepare.yaml
@@ -45,12 +46,25 @@ sudo date -s '9 Jul 2019 22:44
 ```
 and re-run the `ansible-playbook` commands
 
-## How to run Homeberry code on your Raspberry
+## How to sync Homeberry code on your Raspberry
 
 - Run:
 ```
+cd ansible
 ansible-playbook sync.yaml
-ansible-playbook homeberry-run.yaml
+```
+
+## How to run services
+
+### SlackIt!
+
+- Run:
+```
+# To send the default message, the current IP to access Raspi:
+make run-slackit
+
+# To send a custom message:
+SLACKIT_MESSAGE="A custom message!" make run-slackit
 ```
 
 Enjoy!
