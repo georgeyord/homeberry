@@ -22,7 +22,6 @@ Ansible playbooks to setup your Raspberry Pi in an organised way:
 - Go to `ansible` directory
 - Create a file `hosts.ini`:
 ```
-
 [all:vars]
 ansible_ssh_private_key_file = ~/.ssh/id_rsa
 

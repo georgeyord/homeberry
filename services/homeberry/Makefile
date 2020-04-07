@@ -24,8 +24,6 @@ check_system_deps:
 	@hash pyenv 2> /dev/null || echo >&2 'Pyenv is highly recommended'
 
 init: install
-	git submodule init
-	git submodule update
 	poetry env info
 
 install: check_system_deps
