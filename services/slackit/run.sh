@@ -6,9 +6,9 @@ SLACKIT_IPS="$(hostname -I)"
 MESSAGE="RaspberryPi '${SLACKIT_HOSTNAME}' has booted!
 IPs:
 ${SLACKIT_IPS}
-Local network config:
-$(/sbin/ifconfig)
 "
+# Local network config:
+# $(/sbin/ifconfig)
 
 touch "${SLACKIT_LOG_PATH}"
 
