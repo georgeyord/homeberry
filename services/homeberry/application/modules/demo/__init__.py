@@ -23,6 +23,10 @@ def play_demo():
         sleep(1)
         slackpibot.postMessage(settings.SLACK_HOME_CHANNEL, 'Hello world!')
 
+def demo_in_loop():
+    print('demo_in_loop started')
+    # if settings.DEMO_IO_CHANGELOG:
+    #     _demo_io_changelog(GPIO_PIN_17, 0.1)
 
 def _demo_button_press():
     print('Emulate key down to button pinned at {}'.format(
@@ -36,3 +40,10 @@ def _demo_play_octave():
     for note in player.sounds.keys():
         player.play_note(note)
         sleep(SLEEP)
+
+# def _demo_io_changelog(pin, cycle):
+#     if GPIO.input(pin): # if port == 1
+#         print("Port {} is 1/GPIO.HIGH/True - button pressed".format(pin))
+#     else:
+#         print("Port {} is 0/GPIO.LOW/False - button not pressed".format(pin))
+#     sleep(cycle)
