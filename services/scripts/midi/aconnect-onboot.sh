@@ -3,7 +3,7 @@
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 cd "${SCRIPT_DIR}"
 
-LOG_PATH="/var/log/aconnect-in-out.log"
+LOG_PATH="/var/log/midi-aconnect-in-out.log"
 touch "${LOG_PATH}"
 
 test -z "${ACONNECT_INPUT_LABEL}" && echo -e "FAILED $(date) ACONNECT_INPUT_LABEL is empty" >> "${LOG_PATH}" && exit 1
@@ -14,7 +14,7 @@ test -z "${ACONNECT_INPUT_ID}" && echo -e "FAILED $(date) ACONNECT_INPUT_ID is e
 ACONNECT_OUTPUT_ID="$(./aconnect-find-client-id-from-label.sh ${ACONNECT_OUTPUT_LABEL})"
 test -z "${ACONNECT_OUTPUT_ID}" && echo -e "FAILED $(date) ACONNECT_OUTPUT_ID is empty" >> "${LOG_PATH}" && exit 1
 
-OUTPUT="$(aconnect ${ACONNECT_INPUT_ID} ${ACONNECT_OUTPUT_ID})"
+OUTPUT="$(aconnect 2>&1 ${ACONNECT_INPUT_ID} ${ACONNECT_OUTPUT_ID})"
 RESULT=$?
 
 if [ "${RESULT}" -eq 0 ]; then
@@ -22,8 +22,12 @@ if [ "${RESULT}" -eq 0 ]; then
   # slackit pushes MESSAGE env variable
   test -f "${SLACKIT_PATH}" && "${SLACKIT_PATH}"
   echo "OK $(date) ${MESSAGE}" >> "${LOG_PATH}"
-elif [[ "${OUTPUT}" == *"Connection is already subscribed"* ]]; then
-  echo -e "PASS $(date) ${OUTPUT}" >> "${LOG_PATH}"
-elif [[ "${OUTPUT}" == *"Connection failed"* ]]; then
-  echo -e "FAIL $(date) ${OUTPUT}" >> "${LOG_PATH}"
+else
+  if [[ "${OUTPUT}" == *"Connection is already subscribed"* ]]; then
+    echo -e "PASS $(date) ${OUTPUT}" >> "${LOG_PATH}"
+  elif [[ "${OUTPUT}" == *"Connection failed"* ]]; then
+    echo -e "FAIL $(date) ${OUTPUT}" >> "${LOG_PATH}"
+  else
+    echo -e "FAIL $(date) No output" >> "${LOG_PATH}"
+  fi
 fi
