@@ -39,7 +39,7 @@ ansible-playbook homeberry-prepare.yaml
 ```
 is not valid yet (invalid for another 45d 9h 27min 56s). Updates for this repository will not be applied.
 ```
-SSH login and update the machine's date using  this:
+SSH login and update the machine's date using this:
 ```
 sudo date -s '9 Jul 2019 22:44
 ```

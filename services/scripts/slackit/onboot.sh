@@ -8,7 +8,7 @@ touch "${ONBOOT_LOG_PATH}"
 
 ONBOOT_HOSTNAME="$(hostname)"
 ONBOOT_IPS="$(hostname -I)"
-export MESSAGE="RaspberryPi '${ONBOOT_HOSTNAME}' has booted!
+export MESSAGE="RaspberryPi '${ONBOOT_HOSTNAME}' got an IP!
 IPs:
 ${ONBOOT_IPS}
 "
@@ -18,11 +18,14 @@ ${ONBOOT_IPS}
 ONBOOT_LOG_FIRST_LINE=$(head -n 1 "${ONBOOT_LOG_PATH}")
 ONBOOT_LOG_IPS=$(head -n 5 "${ONBOOT_LOG_PATH}" | tail -n 1)
 
-if  [[ "OK" != "${ONBOOT_LOG_FIRST_LINE}" ]] ||
-    [[ "${ONBOOT_LOG_IPS}" != "${ONBOOT_IPS}" ]]; then
-  # Slackit pushes MESSAGE env variable
+# Slackit pushes MESSAGE env variable
+if [[ "OK" != "${ONBOOT_LOG_FIRST_LINE}" ]]; then
   ./slackit.sh && \
-  echo -e "OK\n$(date)\n${MESSAGE}" > "${ONBOOT_LOG_PATH}" || \
+  echo -e "OK\nSent on $(date)\n${MESSAGE}" > "${ONBOOT_LOG_PATH}" || \
+  echo -e "FAILED $(date)" >> "${ONBOOT_LOG_PATH}"
+elif [[ "${ONBOOT_LOG_IPS}" != "${ONBOOT_IPS}" ]]; then
+  ./slackit.sh && \
+  echo -e "OK\nIP changed on $(date)\n${MESSAGE}" > "${ONBOOT_LOG_PATH}" || \
   echo -e "FAILED $(date)" >> "${ONBOOT_LOG_PATH}"
 else
   echo -e "ALREADY SENT $(date)" >> "${ONBOOT_LOG_PATH}"
